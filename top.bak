@@ -13,7 +13,7 @@
   ;; provide anything, but we do so just in case.  
 
   (provide run run-all)
-
+  
   ;; here are some other things that could be provided:
 
   ;;   (provide (all-defined))
@@ -46,6 +46,8 @@
       (cond
         ((number? sloppy-val) (num-val sloppy-val))
         ((boolean? sloppy-val) (bool-val sloppy-val))
+        ;; Added support for empty lists
+        ((eq? sloppy-val '()) (empty-list-val))
         (else
          (eopl:error 'sloppy->expval 
                      "Can't convert sloppy value to expval: ~s"
@@ -64,7 +66,10 @@
                 (run (cadr test))))
           (else (eopl:error 'run-one "no such test: ~s" test-name))))))
  
-  ;; (run-all)
+  (run-all)
+
+  ;; runs all the tests in test-list
+
   
   )
 

@@ -7,7 +7,10 @@
   (define test-list
     '(
   
-      (test-empty-list "emptylist" '())
+      (test-empty-list "emptylist" ())
+      (test-cons "cons(1,emptylist)" (list-val (list (num-val 1) (list-val '()))))
+      (test-cons-2 "cons(1,cons(2,emptylist))" (list-val (list (num-val 1) (list-val (list (num-val 2) (list-val '()))))))
+
       ;; simple arithmetic
       (positive-const "11" 11)
       (negative-const "-33" -33)
@@ -57,7 +60,5 @@
       (check-shadowing-in-rhs "let x = 3 in let x = -(x,1) in x" 2)
 
 
-      (test-cons "cons(1,emptylist)" (list-val (list (num-val 1) (list-val '()))))
-      (test-cons-2 "cons(1,cons(2,emptylist))" (list-val (list (num-val 1) (list-val (list (num-val 2) (list-val '()))))))
       ))
   )

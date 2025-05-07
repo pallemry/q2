@@ -47,7 +47,7 @@
         ((number? sloppy-val) (num-val sloppy-val))
         ((boolean? sloppy-val) (bool-val sloppy-val))
         ;; Added support for empty lists
-        ((eq? sloppy-val '()) (empty-list-val))
+        ((equal? sloppy-val '()) (empty-list-val))
         (else
          (eopl:error 'sloppy->expval 
                      "Can't convert sloppy value to expval: ~s"

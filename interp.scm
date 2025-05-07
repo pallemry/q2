@@ -101,6 +101,14 @@
                 (bool-val #f))
               (else 
                 (eopl:error 'null?-exp "null? of non-list")))))
+        
+        ;; Added a list? operation to the grammar that can take any number of arguments and
+        ;; generate a list with them
+        ;\commentbox{\ma{\thelistspec}}
+        (list-exp (exps)
+          (if (null? exps) (empty-list-val)
+            (let ((val (value-of (car exps) env)))
+              (list-val val (value-of (list-exp (cdr exps)) env)))))
 
         ;\commentbox{\ma{\theletspecsplit}}
         (let-exp (var exp1 body)       

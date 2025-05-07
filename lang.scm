@@ -63,6 +63,12 @@
        ("null?" "(" expression ")")
        null?-exp)
 
+      ;; Added a list? operation to the grammar that can take any number of arguments and 
+      ;; generate a list with them separated by commas
+      (expression
+        ("list" "(" (separated-list expression ",") ")")
+        list-exp)
+
       (expression
        ("let" identifier "=" expression "in" expression)
        let-exp)

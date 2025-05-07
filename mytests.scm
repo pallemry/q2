@@ -51,6 +51,9 @@
         (run-list-test 'test-cdr-2 "cdr(cons(1,emptylist))" '())
         (run-list-test 'test-cdr-3 "cdr(cons(-5,cons(1,emptylist)))" '(1))
         (run-list-test 'test-emptylist "emptylist" '())
+        (run-list-test 'test-list-1 "list(1, 2)" '(1 2))
+        (run-list-test 'test-list-2 "list()" '())
+        (run-list-test 'test-list-3 "list(-(1,1), if null?(list()) then 1 else 2)" '(0 1))
     ))
     
     (run-all)

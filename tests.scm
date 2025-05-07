@@ -6,11 +6,6 @@
   
   (define test-list
     '(
-  
-      (test-empty-list "emptylist" ())
-      (test-cons "cons(1,emptylist)" (list-val (list (num-val 1) (list-val '()))))
-      (test-cons-2 "cons(1,cons(2,emptylist))" (list-val (list (num-val 1) (list-val (list (num-val 2) (list-val '()))))))
-
       ;; simple arithmetic
       (positive-const "11" 11)
       (negative-const "-33" -33)

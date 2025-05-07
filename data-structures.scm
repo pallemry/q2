@@ -16,8 +16,8 @@
     (empty-list-val)
     ;; list-val : ExpVal list x Expval -> ExpVal
     (list-val
-      (lst expval?)
-      (expval? expval?)))
+      (head expval?)
+      (lst expval?)))
 
 ;;; extractors:
 
@@ -43,8 +43,21 @@
     (lambda (v)
       (cases expval v
   (empty-list-val () '())
-  (list-val (lst exp1) (cons exp1 (expval->list lst)))
+  (list-val (exp1 lst) 
+    (cons 
+      (expval->any exp1)
+      (expval->list lst)))
   (else (expval-extractor-error 'list v)))))
+
+  (define expval->any
+    (lambda (v)
+      (cases expval v
+  (num-val (num) (expval->num v))
+  (bool-val (bool) (expval->bool v))
+  (empty-list-val () '())
+  (list-val (head tail) (cons head (expval->list tail)))
+  (else (expval-extractor-error 'expval v)))))
+  
 
   (define expval-extractor-error
     (lambda (variant value)

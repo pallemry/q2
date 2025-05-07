@@ -66,7 +66,7 @@
         (cons-exp (exp1 exp2)
           (let ((val1 (value-of exp1 env))
                 (val2 (value-of exp2 env)))
-            (list-val val2 val1)))
+            (list-val val1 val2)))
 
         ;\commentbox{\ma{\theletspecsplit}}
         (let-exp (var exp1 body)       

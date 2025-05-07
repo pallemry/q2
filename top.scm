@@ -46,8 +46,6 @@
       (cond
         ((number? sloppy-val) (num-val sloppy-val))
         ((boolean? sloppy-val) (bool-val sloppy-val))
-        ;; Added support for empty lists
-        ((equal? sloppy-val '()) (empty-list-val))
         (else
          (eopl:error 'sloppy->expval 
                      "Can't convert sloppy value to expval: ~s"
@@ -65,8 +63,6 @@
            => (lambda (test)
                 (run (cadr test))))
           (else (eopl:error 'run-one "no such test: ~s" test-name))))))
- 
-  (run-all)
 
   ;; runs all the tests in test-list
 

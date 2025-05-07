@@ -48,6 +48,21 @@
        ("cons" "(" expression "," expression ")")
        cons-exp)
 
+      ;; Added a car operation to the grammar
+      (expression
+       ("car" "(" expression ")")
+       car-exp)
+      
+      ;; Added a cdr operation to the grammar
+      (expression
+       ("cdr" "(" expression ")")
+       cdr-exp)
+      
+      ;; Added a null? operation to the grammar
+      (expression
+       ("null?" "(" expression ")")
+       null?-exp)
+
       (expression
        ("let" identifier "=" expression "in" expression)
        let-exp)

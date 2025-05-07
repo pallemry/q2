@@ -65,8 +65,7 @@
           (else (eopl:error 'run-one "no such test: ~s" test-name))))))
 
   ;; runs all the tests in test-list
-
-  
+  ;;(run-all)
   )
 
 

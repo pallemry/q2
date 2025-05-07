@@ -54,6 +54,13 @@
       (check-shadowing-in-body "let x = 3 in let x = 4 in x" 4)
       (check-shadowing-in-rhs "let x = 3 in let x = -(x,1) in x" 2)
 
-
+      ;; Tests for the car and null? operations
+      (test-car "car(cons(1,emptylist))" 1)
+      (test-null "null?(emptylist)" #t)
+      (test-null-false "null?(cons(1,emptylist))" #f)
+      (test-null-if-true "if null?(emptylist) then 1 else 2" 1)
+      (test-null-if-false "if null?(cons(1,emptylist)) then 1 else 2" 2)
+      (test-null-nonexistent "null?(foo)" error)
+      (test-null-non-list "null?(1)" error)
       ))
   )

@@ -67,6 +67,40 @@
           (let ((val1 (value-of exp1 env))
                 (val2 (value-of exp2 env)))
             (list-val val1 val2)))
+        
+        ;; Added a car operation to the grammar
+        ;\commentbox{\ma{\thecarspec}}
+        (car-exp (exp1)
+          (let ((val1 (value-of exp1 env)))
+            (cases expval val1
+              (empty-list-val () 
+                (eopl:error 'car-exp "car of empty list"))
+              (list-val (head tail) head)
+              (else 
+                (eopl:error 'car-exp "car of non-list")))))
+        
+        ;; Added a cdr operation to the grammar
+        ;\commentbox{\ma{\thecdrspec}}
+        (cdr-exp (exp1)
+          (let ((val1 (value-of exp1 env)))
+            (cases expval val1
+              (empty-list-val () 
+                (eopl:error 'cdr-exp "cdr of empty list"))
+              (list-val (head tail) tail)
+              (else 
+                (eopl:error 'cdr-exp "cdr of non-list")))))
+        
+        ;; Added a null? operation to the grammar
+        ;\commentbox{\ma{\thenullspecexp}}
+        (null?-exp (exp1)
+          (let ((val1 (value-of exp1 env)))
+            (cases expval val1
+              (empty-list-val () 
+                (bool-val #t))
+              (list-val (head tail) 
+                (bool-val #f))
+              (else 
+                (eopl:error 'null?-exp "null? of non-list")))))
 
         ;\commentbox{\ma{\theletspecsplit}}
         (let-exp (var exp1 body)       
